@@ -1,9 +1,9 @@
 @extends('admin.index')
 
-@section('title', 'Янгиликлар')
+@section('title', 'Roles')
 
 @section('content_header')
-    <h4>Янгиликлар</h4>
+    <h4>Roles</h4>
 @stop
 
 @section('content')
@@ -12,7 +12,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">
-                        <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm float-right">
+                        <a href="{{ route('roles.create') }}" class="btn btn-primary btn-sm float-right">
                             <span class="fas fa-fw fa-plus"></span>Янги яратиш
                         </a>
                     </h3>
@@ -29,15 +29,13 @@
                         </tr>
                         </thead>
                         <tbody>
-                          @foreach($items as $key => $item)
                             <tr>
-                                <td>{{ ++$key }}</td>
-                                <td>{{ $item->name }}</td>
-                                <td>{{ $item->email }}</td>
+                                <td>12</td>
+                                <td>asd</td>
+                                <td>ddsd</td>
                                 <td>-</td>
                                 <td>A</td>
                             </tr>
-                          @endforeach
                         </tbody>
                     </table>
                 </div>

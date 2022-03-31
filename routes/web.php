@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\PermissionsController;
+use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +32,8 @@ Route::middleware(['auth:web'])->prefix('admin')->group(function () {
 
     Route::resources([
         'users'  => UsersController::class,
+        'roles'  => RolesController::class,
+        'permissions'  => PermissionsController::class,
         'news'  => NewsController::class,
     ]);
 
