@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Permissions\StoreRequest;
+use App\Http\Requests\Permissions\UpdateRequest;
 use App\Models\Permession;
-use App\Http\Requests\StorePermessionRequest;
-use App\Http\Requests\UpdatePermessionRequest;
 
 class PermissionsController extends Controller
 {
@@ -19,7 +19,7 @@ class PermissionsController extends Controller
         return view('admin.permissions.create');
     }
 
-    public function store(StorePermessionRequest $request)
+    public function store(StoreRequest $request)
     {
         //
     }
@@ -34,7 +34,7 @@ class PermissionsController extends Controller
         //
     }
 
-    public function update(UpdatePermessionRequest $request, Permession $permession)
+    public function update(UpdateRequest $request, Permession $permession)
     {
         //
     }

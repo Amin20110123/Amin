@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\News\UpdateRequest;
+use App\Http\Requests\News\StoreRequest;
 use App\Models\News;
-use App\Http\Requests\StoreNewRequest;
-use App\Http\Requests\UpdateNewRequest;
 
 class NewsController extends Controller
 {
@@ -19,7 +19,7 @@ class NewsController extends Controller
         return view('admin.users.create');
     }
 
-    public function store(StoreNewRequest $request)
+    public function store(StoreRequest $request)
     {
         //
     }
@@ -34,7 +34,7 @@ class NewsController extends Controller
         //
     }
 
-    public function update(UpdateNewRequest $request, News $new)
+    public function update(UpdateRequest $request, News $new)
     {
         //
     }

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Roles\StoreRequest;
+use App\Http\Requests\Roles\UpdateRequest;
 use App\Models\Role;
-use App\Http\Requests\StoreRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
 
 class RolesController extends Controller
 {
@@ -19,7 +19,7 @@ class RolesController extends Controller
         return view('admin.news.create');
     }
 
-    public function store(StoreRoleRequest $request)
+    public function store(StoreRequest $request)
     {
         //
     }
@@ -34,7 +34,7 @@ class RolesController extends Controller
         //
     }
 
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(UpdateRequest $request, Role $role)
     {
         //
     }

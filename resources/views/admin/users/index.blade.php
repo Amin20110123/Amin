@@ -26,6 +26,7 @@
                             <th>Email</th>
                             <th>Engine version</th>
                             <th>CSS grade</th>
+                            <th>Action</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -36,6 +37,19 @@
                                 <td>{{ $item->email }}</td>
                                 <td>-</td>
                                 <td>A</td>
+                                <td>
+                                    <form action="{{ route('news.destroy',  $item->id) }}" method="post"
+                                          onsubmit="return confirm('Siz rostdan ham ushbu ma\'lumotni o\'chirishni xoxlaysizmi ?')">
+                                        <a href="{{ route('users.edit',  $item->id) }}" class="btn btn-info btn-sm float-left">
+                                            <span class="fas fa-fw fa-pencil-alt"></span>
+                                        </a>
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <span class="fas fa-fw fa-trash-alt"></span>
+                                        </button>
+                                    </form>
+                                </td>
                             </tr>
                           @endforeach
                         </tbody>
