@@ -6,15 +6,6 @@
     <h4>{{ __('content.create_news') }}</h4>
 @stop
 
-@section('adminlte_css')
-    <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-bs4.min.css')  }}">
-    <style>
-        .summer{
-
-        }
-    </style>
-@stop
-
 @section('content')
     <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
         @csrf()
@@ -86,14 +77,4 @@
             <!-- /.card -->
         </div>
     </form>
-@stop
-
-@section('adminlte_js')
-    <script src="{{ asset('vendor/summernote/summernote-bs4.min.js')  }}"></script>
-    <script>
-        $(function () {
-            // Summernote
-            $('.summernote').summernote()
-        })
-    </script>
 @stop

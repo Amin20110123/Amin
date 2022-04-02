@@ -1,7 +1,6 @@
 @extends('admin.index')
 
 @section('title', __('content.create_news'))
-<link rel="stylesheet" href="{{ asset('/vendor/daterangepicker/daterangepicker.css')  }}">
 
 @section('content_header')
     <h4>{{ __('content.create_news') }}</h4>
@@ -79,14 +78,4 @@
             <!-- /.card -->
         </div>
     </form>
-@stop
-
-@section('adminlte_js')
-    <script src="{{ asset('/vendor/summernote/summernote-bs4.min.js')  }}"></script>
-    <script>
-        $(function () {
-            // Summernote
-            $('#summernote').summernote()
-        })
-    </script>
 @stop

@@ -3,20 +3,20 @@
 @section('title', __('content.create_news'))
 
 @section('content_header')
-    <h4>{{ __('content.create_news') }}</h4>
-@stop
-
-@section('adminlte_css')
-    <link rel="stylesheet" href="{{ asset('vendor/summernote/summernote-bs4.min.css')  }}">
-    <style>
-        .summer{
-
-        }
-    </style>
+    <h4>{{ __('content.create_roles') }}</h4>
 @stop
 
 @section('content')
-    <form action="{{ route('users.store') }}" method="post" enctype="multipart/form-data">
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <form action="{{ route('roles.store') }}" method="POST" enctype="multipart/form-data">
         @csrf()
         <div class="card card-primary card-outline card-outline-tabs">
             <div class="card-header p-0 border-bottom-0">
@@ -31,55 +31,38 @@
             </div>
             <div class="card-body">
                 <div class="tab-content" id="custom-tabs-three-tabContent">
-                    <!--           Uz             -->
+                    {{--           Uz             --}}
                     <div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel" aria-labelledby="custom-tabs-three-home-tab">
                         <div class="form-group">
-                            <label for="title">{{ __('menu.title_uz') }}</label>
-                            <input class="form-control" name="title_uz">
-                            <span class="text-danger">{{ $errors->first('title_uz') }}</span>
+                            <label for="title">Role name</label>
+                            <input class="form-control" name="role_name" id="role_name" placeholder="Role name..." value="{{ old('role_name') }}">
                         </div>
                         <div class="form-group">
-                            <label>{{ __('menu.description_uz') }}</label>
-                            <label for="summernote"></label>
-                            <textarea class="summernote summer" name="description_uz">
-                            </textarea>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="body">{{ __('menu.body_uz') }}</label>
-                            <textarea class="summernote" name="body_uz">
-                            </textarea>
+                            <label for="title">Role slug</label>
+                            <input class="form-control" name="role_slug" id="role_slug" placeholder="Role slug..." value="{{ old('role_slug') }}">
                         </div>
                         <div class="form-group">
-                            <label>{{ __('menu.image') }}</label>
-                            <input class="form-control" type="file" name="image" id="image">
+                            <label for="roles_permissions">Add Permissions</label>
+                            <input type="text" data-role="tagsinput" class="form-control" name="roles_permissions" id="roles_permissions" placeholder="roles_permissions..." value="{{ old('roles_permissions') }}">
                         </div>
-                        <div class="form-group">
-                            <label>Date</label>
-                            <input class="form-control" type="date" name="dateTime" id="date">
-                            <span class="text-danger">{{ $errors->first('dateTime') }}</span>
-                        </div>
+{{--                        <div class="form-group">--}}
+{{--                            <label>Multiple (.select2-purple)</label>--}}
+{{--                            <div class="select2-purple">--}}
+{{--                                <select class="select2" name="roles_permissions[]" id="roles_permissions" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">--}}
+{{--                                    <option>Create</option>--}}
+{{--                                    <option>Update</option>--}}
+{{--                                    <option>Delete</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
                     </div>
-                    <!--           Oz             -->
-                    <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">{{ __('menu.title_oz') }}</label>
-                            <input class="form-control" name="title_oz">
-                        </div>
-                        <div class="form-group">
-                            <label>{{ __('menu.description_oz') }}</label>
-
-                            <textarea  class="textarea form-control summernote" placeholder="Place some text here"
-                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"
-                                       name="description_oz"></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">{{ __('menu.content_oz') }}</label>
-                            <textarea  class="textarea form-control summernote" placeholder="Place some text here"
-                                       style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"
-                                       name="body_oz"></textarea>
-                        </div>
-                    </div>
+                    {{--           Oz             --}}
+                    {{--                    <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">--}}
+                    {{--                        <div class="form-group">--}}
+                    {{--                            <label for="exampleInputEmail1">{{ __('menu.title_oz') }}</label>--}}
+                    {{--                            <input class="form-control" name="title_oz">--}}
+                    {{--                        </div>--}}
+                    {{--                    </div>--}}
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm float-right">&check; {{ __('content.save') }}</button>
             </div>
@@ -87,13 +70,17 @@
         </div>
     </form>
 @stop
+{{--@section('js')--}}
+{{--    <script>--}}
+{{--        // $('.select2').select2()--}}
 
-@section('adminlte_js')
-    <script src="{{ asset('vendor/summernote/summernote-bs4.min.js')  }}"></script>
-    <script>
-        $(function () {
-            // Summernote
-            $('.summernote').summernote()
-        })
-    </script>
-@stop
+{{--        $(document).ready(function () {--}}
+{{--           $('#role_name').keyup(function (e) {--}}
+{{--              var str = $('role_name').val();--}}
+{{--              str = str.replace(/\W+(?!$)/g, '-').toLowerCase();--}}
+{{--              $('#role_slug').val(str);--}}
+{{--              $('#role_slug').attr('placeholder', str);--}}
+{{--           });--}}
+{{--        });--}}
+{{--    </script>--}}
+{{--@stop--}}

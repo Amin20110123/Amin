@@ -21,12 +21,12 @@
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
                         <tr>
-                            <th>№</th>
+                            <th>Id</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Engine version</th>
-                            <th>CSS grade</th>
-                            <th>Action</th>
+                            <th>Roles</th>
+                            <th>Permissions</th>
+                            <th>Tools</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -38,10 +38,13 @@
                                 <td>-</td>
                                 <td>A</td>
                                 <td>
-                                    <form action="{{ route('news.destroy',  $item->id) }}" method="post"
+                                    <form action="{{ route('users.destroy',  $item->id) }}" method="post"
                                           onsubmit="return confirm('Siz rostdan ham ushbu ma\'lumotni o\'chirishni xoxlaysizmi ?')">
-                                        <a href="{{ route('users.edit',  $item->id) }}" class="btn btn-info btn-sm float-left">
-                                            <span class="fas fa-fw fa-pencil-alt"></span>
+                                        <a href="{{ route('users.show',  $item->id) }}">
+                                            <i class="fa fa-eye"></i>
+                                        </a>
+                                        <a href="{{ route('users.edit',  $item->id) }}">
+                                            <i class="fa fa-edit"></i>
                                         </a>
                                         @csrf
                                         @method('delete')

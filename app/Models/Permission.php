@@ -11,8 +11,12 @@ class Permission extends Model
 
     protected $fillable = [
         'name',
-        'email',
-        'password',
+        'slug'
     ];
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'roles_permissions');
+    }
 
 }
