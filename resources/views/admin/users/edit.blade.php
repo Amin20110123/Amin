@@ -50,6 +50,49 @@
                             <label for="title">Password Confirm</label>
                             <input type="password" class="form-control" name="password_confirmation" id="password_confirmation" placeholder="Password...">
                         </div>
+                        <div class="form-group">
+                            <label for="role">Select Role</label>
+                            <select class="role form-control" name="role" id="role">
+                                <option value="">Select Role...</option>
+                                @foreach($roles as $key => $role)
+                                    <option
+                                        data-role-id="{{ $role->id }}"
+                                        data-role-slug="{{ $role->slug }}"
+                                        value="{{ $role->id }}"
+                                        {{ $user->roles->isEmpty() || $role->name != $userRole->name ? "" : "selected" }}
+                                    >
+                                        {{ $role->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div id="permissions_box">
+                            <label for="roles">Select Permissions</label>
+                            <div id="permissions_checkbox_list">
+                            </div>
+                        </div>
+                        @if($user->permissions->isNotEmpty())
+                            @if($rolePermission != null)
+                                <div id="user_permissions_box">
+                                    <label for="roles">User Permissions</label>
+                                    <div id="user_permissions_checkbox_list">
+                                        @foreach($rolePermission as $permission)
+                                        <div class="custom-control custom-checkbox">
+                                            <input
+                                                class="custom-control-input"
+                                                type="checkbox"
+                                                name="permissions[]"
+                                                id="{{ $permission->slug }}"
+                                                value="{{ $permission->id }}"
+                                                {{ in_array($permission->id, $userPermissions->pluck('id')->toArray()) ? 'checked="checked"' : '' }}
+                                            >
+                                            <label class="custom-control-label" for="{{ $permission->slug }}">{{ $permission->name }}</label>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+                        @endif
                     </div>
                     {{--           Oz             --}}
 {{--                    <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">--}}
@@ -64,4 +107,46 @@
             <!-- /.card -->
         </div>
     </form>
+@stop
+
+@section('adminlte_js')
+    <script>
+        $(document).ready(function () {
+            var permissions_box = $('#permissions_box');
+            var permissions_check_list = $('#permissions_checkbox_list');
+            var user_permissions_checkbox_list = $('#user_permissions_checkbox_list');
+
+            permissions_box.hide();
+
+            $('#role').on('change', function () {
+                var role_id = $("#role option:selected").attr('data-role-id');
+                var role_slug = $("#role option:selected").attr('data-role-slug');
+
+                // permissions_checkbox_list.empty();
+                // user_permissions_box.empty();
+
+                $.ajax({
+                    url: "/admin/users/create",
+                    method: 'get',
+                    dataType: 'json',
+                    data: {
+                        role_id: role_id,
+                        role_slug: role_slug
+                    }
+                }).done(function (data) {
+
+                    permissions_box.show();
+
+                    $.each(data, function (index, element) {
+                        $(permissions_check_list).append(
+                            '<div class="custom-control custom-checkbox">' +
+                            '<input class="custom-control-input" type="checkbox" name="permissions[]" id="'+ element.slug +'" value="' + element.id +'"/>' +
+                            '<label class="custom-control-label" for="'+ element.slug +'">'+ element.name + '</label>' +
+                            '</div>'
+                        );
+                    })
+                })
+            })
+        });
+    </script>
 @stop

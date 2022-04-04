@@ -1,0 +1,3 @@
+<?php
+
+// Istalgan joyda ishlaydi

@@ -37,7 +37,5 @@ Route::middleware(['auth:web'])->prefix('admin')->group(function () {
         'news'  => NewsController::class,
     ]);
 
-
-
 });
 

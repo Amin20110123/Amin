@@ -76,7 +76,6 @@ class RolesController extends Controller
             $role->save();
         }
 
-
         return redirect('/admin/roles');
     }
 

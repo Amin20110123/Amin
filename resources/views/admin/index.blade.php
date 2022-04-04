@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="{{ asset('vendor/datatables-plugins/responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/datatables-plugins/bs4/css/dataTables.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap-tagsiput/bootstrap-tagsinput.css') }}">
-
-    {{--    <link rel="stylesheet" href="{{ asset('vendor/select2-bootstrap4-theme/select2-bootstrap4.min.css')  }}">--}}
 @stop
 
 @section('content_header')
@@ -43,14 +41,8 @@
     <script src="{{ asset('vendor/datatables-plugins/buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables-plugins/buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('vendor/summernote/summernote-bs4.min.js')  }}"></script>
-{{--    <script src="{{ asset('vendor/select2/js/select2.full.min.js')  }}"></script>--}}
-
-    <script src="{{ asset('vendor/bootstrap-tagsiput/bootstrap-tagsinput.js')  }}"></script>
     <script>
-        $('.select2').select2()
-
         $(function () {
-            // Summernote
             $('.summernote').summernote()
         })
 

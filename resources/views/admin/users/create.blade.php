@@ -53,10 +53,17 @@
                         </div>
                         <div class="form-group">
                             <label for="role">Select Role</label>
-                            ......................
+                            <select class="role form-control" name="role" id="role">
+                                <option value="">Select Role...</option>
+                                @foreach($roles as $key => $role)
+                                    <option data-role-id="{{ $role->id }}" data-role-slug="{{ $role->slug }}" value="{{ $role->id }}">{{ $role->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div id="permissions_box">
-                            ......................
+                            <label for="roles">Select Permissions</label>
+                            <div id="permissions_checkbox_list">
+                            </div>
                         </div>
                     </div>
                     {{--           Oz             --}}
@@ -73,3 +80,45 @@
         </div>
     </form>
 @stop
+
+@section('adminlte_js')
+    <script>
+        $(document).ready(function () {
+            var permissions_box = $('#permissions_box');
+            var permissions_check_list = $('#permissions_checkbox_list');
+
+            permissions_box.hide();
+
+            $('#role').on('change', function () {
+                var role_id = $("#role option:selected").attr('data-role-id');
+                var role_slug = $("#role option:selected").attr('data-role-slug');
+
+                // permissions_checkbox_list.empty();
+
+                $.ajax({
+                    url: "/admin/users/create",
+                    method: 'get',
+                    dataType: 'json',
+                    data: {
+                        role_id: role_id,
+                        role_slug: role_slug
+                    }
+                }).done(function (data) {
+
+                    permissions_box.show();
+
+                    $.each(data, function (index, element) {
+                        $(permissions_check_list).append(
+                             '<div class="custom-control custom-checkbox">' +
+                                 '<input class="custom-control-input" type="checkbox" name="permissions[]" id="'+ element.slug +'" value="' + element.id +'"/>' +
+                                 '<label class="custom-control-label" for="'+ element.slug +'">'+ element.name + '</label>' +
+                             '</div>'
+                        );
+                    })
+                })
+            })
+        });
+    </script>
+@stop
+
+

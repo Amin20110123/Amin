@@ -31,7 +31,7 @@
             </div>
             <div class="card-body">
                 <div class="tab-content" id="custom-tabs-three-tabContent">
-                    {{--           Uz             --}}
+                    <!--           Uz             -->
                     <div class="tab-pane fade show active" id="custom-tabs-three-home" role="tabpanel" aria-labelledby="custom-tabs-three-home-tab">
                         <div class="form-group">
                             <label for="title">Role name</label>
@@ -45,18 +45,8 @@
                             <label for="roles_permissions">Add Permissions</label>
                             <input type="text" data-role="tagsinput" class="form-control" name="roles_permissions" id="roles_permissions" placeholder="roles_permissions..." value="{{ old('roles_permissions') }}">
                         </div>
-{{--                        <div class="form-group">--}}
-{{--                            <label>Multiple (.select2-purple)</label>--}}
-{{--                            <div class="select2-purple">--}}
-{{--                                <select class="select2" name="roles_permissions[]" id="roles_permissions" multiple="multiple" data-placeholder="Select a State" data-dropdown-css-class="select2-purple" style="width: 100%;">--}}
-{{--                                    <option>Create</option>--}}
-{{--                                    <option>Update</option>--}}
-{{--                                    <option>Delete</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                     </div>
-                    {{--           Oz             --}}
+                    <!--           Oz             -->
                     {{--                    <div class="tab-pane fade" id="custom-tabs-three-profile" role="tabpanel" aria-labelledby="custom-tabs-three-profile-tab">--}}
                     {{--                        <div class="form-group">--}}
                     {{--                            <label for="exampleInputEmail1">{{ __('menu.title_oz') }}</label>--}}
@@ -70,17 +60,20 @@
         </div>
     </form>
 @stop
-{{--@section('js')--}}
-{{--    <script>--}}
-{{--        // $('.select2').select2()--}}
+<script>
+</script>
+@section('adminlte_js')
+    <script src="{{ asset('vendor/bootstrap-tagsiput/bootstrap-tagsinput.js')  }}"></script>
 
-{{--        $(document).ready(function () {--}}
-{{--           $('#role_name').keyup(function (e) {--}}
-{{--              var str = $('role_name').val();--}}
-{{--              str = str.replace(/\W+(?!$)/g, '-').toLowerCase();--}}
-{{--              $('#role_slug').val(str);--}}
-{{--              $('#role_slug').attr('placeholder', str);--}}
-{{--           });--}}
-{{--        });--}}
-{{--    </script>--}}
-{{--@stop--}}
+    <!--  now working   -->
+    <script>
+        $(document).ready(function () {
+           $('#role_name').keyup(function (e) {
+              var str = $('role_name').val();
+              str = str.replace(/\W+(?!$)/g, '-').toLowerCase();
+              $('#role_slug').val(str);
+              $('#role_slug').attr('placeholder', str);
+           });
+        });
+    </script>
+@stop
