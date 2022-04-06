@@ -31,7 +31,8 @@
                         </thead>
                         <tbody>
                           @foreach($users as $key => $user)
-                            <tr>
+                            @if(!\Auth::user()->hasRole('admin') && $user->hasRole('admin')) @continue; @endif
+                            <tr {{ Auth::user()->id == $user->id ? 'bgcolor=#ddd' : '' }}>
                                 <td>{{ ++$key }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>

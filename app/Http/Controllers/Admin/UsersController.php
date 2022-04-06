@@ -11,6 +11,11 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:admin,manager');
+    }
+
     public function index()
     {
         $users = User::orderBy('id', 'desc')->get();

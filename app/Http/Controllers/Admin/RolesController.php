@@ -11,6 +11,11 @@ use Illuminate\Support\Str;
 
 class RolesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('can:isAdmin');
+    }
+
     public function index()
     {
         $roles = Role::with('permissions')->orderBy('id', 'desc')->get();

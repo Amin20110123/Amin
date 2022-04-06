@@ -27,7 +27,7 @@
     </div>
 @stop
 
-@section('adminlte_js')
+@section('js')
     <script src="{{ asset('vendor/datatables-plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables-plugins/bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables-plugins/responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -41,6 +41,8 @@
     <script src="{{ asset('vendor/datatables-plugins/buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('vendor/datatables-plugins/buttons/js/buttons.print.min.js') }}"></script>
     <script src="{{ asset('vendor/summernote/summernote-bs4.min.js')  }}"></script>
+
+
     <script>
         $(function () {
             $('.summernote').summernote()

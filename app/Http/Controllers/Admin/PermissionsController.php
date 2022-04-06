@@ -6,11 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Permissions\StoreRequest;
 use App\Http\Requests\Permissions\UpdateRequest;
 use App\Models\Permession;
+use Illuminate\Support\Facades\Http;
 
 class PermissionsController extends Controller
 {
     public function index()
     {
+        $response = Http::get('https://jsonplaceholder.typicode.com/posts/1');
+
         return view('admin.permissions.index');
     }
 

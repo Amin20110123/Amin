@@ -78,3 +78,20 @@
         </div>
     </form>
 @stop
+
+@section('js')
+    <script src="{{ asset('vendor/bootstrap-tagsiput/bootstrap-tagsinput.js')  }}"></script>
+
+    <!--  now working   -->
+    <script>
+        $(document).ready(function(){
+            $('#role_name').keyup(function(e){
+                var str = $('#role_name').val();
+                str = str.replace(/\W+(?!$)/g, '-').toLowerCase();//rplace stapces with dash
+                $('#role_slug').val(str);
+                $('#role_slug').attr('placeholder', str);
+            });
+        });
+    </script>
+@stop
+
