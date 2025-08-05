@@ -1,0 +1,17 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+  }
+  
+  .logo {
+    height: 100px;
+    padding-bottom: 10px;
+  }
+  
+  .menu a {
+    color: white;
+    margin-left: 20px;
+    text-decoration: none;
+  }

@@ -5,6 +5,9 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\PermissionsController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\QuestionsController;
+use App\Http\Controllers\Admin\CourseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,9 +23,10 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware(['auth:sanctum', 'role:admin'])->prefix('admin')->name('admin.')->group(function ()
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [\App\Http\Controllers\ResourceController::class, 'index'])->name('main');
+Route::get('/about', [\App\Http\Controllers\ResourceController::class, 'about'])->name('about');
+Route::get('/courses', [\App\Http\Controllers\ResourceController::class, 'courses'])->name('courses');
+Route::get('/contact', [\App\Http\Controllers\ResourceController::class, 'contact'])->name('contact');
 
 Auth::routes();
 
@@ -35,7 +39,11 @@ Route::middleware(['auth:web'])->prefix('admin')->group(function () {
         'roles'  => RolesController::class,
         'permissions'  => PermissionsController::class,
         'news'  => NewsController::class,
+        'categories'  => CategoryController::class,
+        'questions'  => QuestionsController::class,
+        'courses'  => CourseController::class,
     ]);
 
 });
 
+    

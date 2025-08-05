@@ -29,7 +29,12 @@ class RegisterController extends Controller
      *
      * @var string
      */
+
+    //  use RegistersUsers;
+
+
     protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = '/admin/dashboard';
 
     /**
      * Create a new controller instance.
@@ -50,9 +55,10 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 'name' => 'nullable',
+            'username' => 'required|string|max:70|unique:users',
+            // 'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
         ]);
     }
 
@@ -65,9 +71,11 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            // 'name' => $data['name'],
+            'username' => $data['username'],
+            // 'email' => $data['email'],
+            // 'password' => Hash::make($data['password']),
+            'password' => bcrypt($data['password']),
         ]);
     }
 }

@@ -24,10 +24,9 @@
     <form action="{{ $login_url }}" method="post">
         @csrf
 
-        {{-- Email field --}}
+        {{-- Login field --}}
         <div class="input-group mb-3">
-            <input type="email" name="email" class="form-control @error('email') is-invalid @enderror"
-                   value="{{ old('email') }}" placeholder="{{ __('adminlte::adminlte.email') }}" autofocus>
+            <input id="username" type="text" name="username" class="form-control" value="{{ old('username') }}" placeholder="login"  required autofocus>
 
             <div class="input-group-append">
                 <div class="input-group-text">
@@ -35,11 +34,11 @@
                 </div>
             </div>
 
-            @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
+            @if ($errors->has('username'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('username') }}</strong>
                 </span>
-            @enderror
+            @endif
         </div>
 
         {{-- Password field --}}

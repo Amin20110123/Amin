@@ -1,4 +1,4 @@
-<?php
+    <?php
 
 return [
 
@@ -250,8 +250,21 @@ return [
             'text'        => 'News',
             'url'         => 'admin/news',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Category',
+            'url'         => 'admin/categories',
+            'icon'        => 'far fa-fw fa-file',
+        ],
+        [
+            'text'        => 'Questions',
+            'url'         => 'admin/questions',
+            'icon'        => 'far fa-fw fa-file',
+        ],
+        [
+            'text'        => 'Course',
+            'url'         => 'admin/courses',
+            'icon'        => 'far fa-fw fa-file',
         ],
         [
             'text'    => 'Users Management',
