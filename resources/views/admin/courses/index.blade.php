@@ -26,12 +26,18 @@
                                 <th>Img</th>
                                 <th>Title</th>
                                 <th>Description</th>
+                                <th>Crud</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($courses as $course)
                                 <tr>
                                     <td>{{ $course->id }}</td>
+                                    <td>
+                                        @if ($course->img)
+                                            <img src="{{ asset('uploads/' . $course->img) }}" width="150">
+                                        @endif
+                                    </td>
                                     <td>{{ $course->title }}</td>
                                     <td>{{ $course->description }}</td>
                                     <td class="row">

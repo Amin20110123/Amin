@@ -31,6 +31,10 @@
                             <input class="form-control" name="description" placeholder='enter'>
                             <span class="text-danger"></span>
                         </div>
+                        <div class="form-group">
+                            <label>Image:</label>
+                            <input type="file" name="image" accept="image/*">
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm float-right">save</button>
